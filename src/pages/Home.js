@@ -1,10 +1,11 @@
 import React from "react"
+import CenterContainer from "../components/CenterContainer"
 
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
+        <CenterContainer height="90vh">
+            Home
+        </CenterContainer>
     )
 }
 

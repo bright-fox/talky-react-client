@@ -1,23 +1,15 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { createGlobalStyle } from "styled-components"
 import Navbar from "./Navbar"
 import Home from "../pages/Home"
 import Chatrooms from "../pages/Chatrooms"
 import Chatroom from "../pages/Chatroom"
-
-// reset styles
-const GlobalStyle = createGlobalStyle`
-  body {
-    padding: 0;
-    margin: 0;
-  }
-`
+import Globalstyle from "../styles/Globalstyle"
 
 function App() {
   return (
     <Router>
-      <GlobalStyle />
+      <Globalstyle />
       <Navbar />
       <Switch>
         <Route path={["/", "/home"]} exact>
