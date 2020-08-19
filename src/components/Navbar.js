@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import Button from "./Button"
 
 const Navlink = styled(Link)`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -23,7 +24,7 @@ const Navlink = styled(Link)`
         height: 2px;
         bottom: 0;
         left: 0;
-        background-color: #43f2cc;
+        background-color: #ff4f5a;
         visibility: hidden;
         transition: all 0.4s ease-in-out 0s;
     }
@@ -39,29 +40,10 @@ const Navbrand = styled(Link)`
 
     color: black;
     font-family: 'Libre Baskerville', serif;
+    font-weight: bold;
     font-size: 1.8rem;
     text-decoration: none;
     margin: 10px;
-`
-
-const Button = styled.button`
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-    background-color: #43f2cc;
-    text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-    letter-spacing: 1.25px;
-    padding: 10px 15px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-
-    &:hover {
-        filter: brightness(105%);
-    }
-
 `
 
 const Container = styled.div`

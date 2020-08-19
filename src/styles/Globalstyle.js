@@ -5,4 +5,9 @@ export default createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
+  img {
+    max-width: 30%;
+    height: auto;
+  }
 `

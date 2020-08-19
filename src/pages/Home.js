@@ -1,11 +1,76 @@
 import React from "react"
 import CenterContainer from "../components/CenterContainer"
+import styled from "styled-components"
+import Button from "../components/Button"
+
+const Div = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    & .header {
+        margin-top: -50px;
+    }
+
+    & > .header > h2, & p {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    & p {
+        font-size: 0.9rem;
+        overflow: break-word;
+        max-width: 480px;
+    }
+`
+
+const Card = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & div {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        max-width: 240px;
+    }
+`
 
 const Home = () => {
     return (
-        <CenterContainer height="90vh">
-            Home
-        </CenterContainer>
+        <>
+            <CenterContainer height="90vh">
+                <Div>
+                    <div className="header">
+                        <h2>Meet and socialize.</h2>
+                        <p>Join different chatrooms to meet with new people from all around the world and create new friendships. Socialize and interact in an easy and fun way. </p>
+                        <Button>Join rooms</Button>
+                    </div>
+                    <img src={process.env.PUBLIC_URL + "/images/communication.jpg"} alt="communication" />
+                </Div>
+            </CenterContainer>
+            <CenterContainer backgroundColor="#EEE">
+                <Card>
+                    <img src={process.env.PUBLIC_URL + "/images/care.png"} alt="hands around heart" />
+                    <h2>From us for you</h2>
+                    <div>We created this website just for the useres to meet new people without any costs.</div>
+                </Card>
+                <Card>
+                    <img src={process.env.PUBLIC_URL + "/images/chat.png"} alt="chat messages" />
+                    <h2>Join Chatrooms</h2>
+                    <div>The multiple rooms give the users the opportunity to easily join and meet people.</div>
+                </Card>
+                <Card>
+                    <img src={process.env.PUBLIC_URL + "/images/interest.png"} alt="" />
+                    <h2>Different interests</h2>
+                    <div>Each chatroom has a theme that gives a hint about the topics discussed.</div>
+                </Card>
+            </CenterContainer>
+        </>
     )
 }
 
