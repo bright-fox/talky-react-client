@@ -55,17 +55,17 @@ const Home = () => {
             </CenterContainer>
             <CenterContainer backgroundColor="#EEE">
                 <Card>
-                    <img src={process.env.PUBLIC_URL + "/images/care.png"} alt="hands around heart" />
+                    <img src={process.env.PUBLIC_URL + "/icons/care.png"} alt="hands around heart" />
                     <h2>From us for you</h2>
                     <div>We created this website just for the useres to meet new people without any costs.</div>
                 </Card>
                 <Card>
-                    <img src={process.env.PUBLIC_URL + "/images/chat.png"} alt="chat messages" />
+                    <img src={process.env.PUBLIC_URL + "/icons/chat.png"} alt="chat messages" />
                     <h2>Join Chatrooms</h2>
                     <div>The multiple rooms give the users the opportunity to easily join and meet people.</div>
                 </Card>
                 <Card>
-                    <img src={process.env.PUBLIC_URL + "/images/interest.png"} alt="" />
+                    <img src={process.env.PUBLIC_URL + "/icons/interest.png"} alt="" />
                     <h2>Different interests</h2>
                     <div>Each chatroom has a theme that gives a hint about the topics discussed.</div>
                 </Card>
