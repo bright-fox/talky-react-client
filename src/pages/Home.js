@@ -2,6 +2,7 @@ import React from "react"
 import CenterContainer from "../components/CenterContainer"
 import styled from "styled-components"
 import Button from "../components/Button"
+import { useHistory } from "react-router-dom"
 
 const Div = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -41,6 +42,8 @@ const Card = styled.div`
 `
 
 const Home = () => {
+    const history = useHistory()
+
     return (
         <>
             <CenterContainer height="90vh">
@@ -48,7 +51,7 @@ const Home = () => {
                     <div className="header">
                         <h2>Meet and socialize.</h2>
                         <p>Join different chatrooms to meet with new people from all around the world and create new friendships. Socialize and interact in an easy and fun way. </p>
-                        <Button>Join rooms</Button>
+                        <Button onClick={() => history.push("/rooms")}>Join rooms</Button>
                     </div>
                     <img src={process.env.PUBLIC_URL + "/images/communication.jpg"} alt="communication" />
                 </Div>
