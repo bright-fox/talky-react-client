@@ -70,7 +70,7 @@ const Home = () => {
                 <Card>
                     <img src={process.env.PUBLIC_URL + "/icons/interest.png"} alt="" />
                     <h2>Different interests</h2>
-                    <div>Each chatroom has a theme that gives a hint about the topics discussed.</div>
+                    <div>Each chatroom has a theme that gives a hint about the discussed topics.</div>
                 </Card>
             </CenterContainer>
         </>

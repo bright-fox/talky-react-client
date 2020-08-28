@@ -5,7 +5,7 @@ import moment from "moment"
 const MessageContainer = styled.div`
     background-color: ${props => props.color || "#eee"};
     border-radius: 5px;
-    padding: 15px;
+    padding: 10px;
     ${props => props.isAuthor ? css`margin: 5px 20px 5px auto;` : css`margin: 5px 20px;`}
     position: relative;
     max-width: 70%;
