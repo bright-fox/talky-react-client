@@ -4,6 +4,7 @@ import Input from "../components/Input"
 import Button from "../components/Button"
 import useForm from "../hooks/useForm"
 import { request } from "../api"
+import { cacheUser } from "../util"
 
 const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
@@ -50,6 +51,9 @@ const ColorContainer = styled.div`
 async function callback(inputs) {
     const res = await request({ method: "POST", path: "/signup", body: { ...inputs } })
     if (res.status !== 200) return // handle error
+    const { user, accessToken } = await res.json()
+
+    cacheUser(user, accessToken)
 }
 
 const Registration = () => {
