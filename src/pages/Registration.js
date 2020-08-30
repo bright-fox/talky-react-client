@@ -1,10 +1,11 @@
 import React from "react"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Input from "../components/Input"
 import Button from "../components/Button"
 import useForm from "../hooks/useForm"
 import { request } from "../api"
-import { cacheUser } from "../util"
+import { cacheUser } from "../util/cache"
 
 const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
@@ -48,17 +49,21 @@ const ColorContainer = styled.div`
         margin-right: 5px;
     }
 `
-async function callback(inputs) {
-    const res = await request({ method: "POST", path: "/signup", body: { ...inputs } })
-    if (res.status !== 200) return // handle error
-    const { user, accessToken } = await res.json()
-
-    cacheUser(user, accessToken)
-}
 
 const Registration = () => {
+    const history = useHistory()
     const initialValues = { username: "", email: "", confirmEmail: "", password: "", confirmPassword: "", bubbleColor: "#ff4f5b", textColor: "#000000" }
     const { inputs, handleInputChange, handleSubmit } = useForm(initialValues, callback)
+
+    async function callback(inputs) {
+        const res = await request({ method: "POST", path: "/signup", body: { ...inputs } })
+        if (res.status !== 200) return // handle error
+        const { user, accessToken } = await res.json()
+
+        cacheUser(user, accessToken)
+        history.push("/")
+    }
+
     return (
         <Container>
             <LeftSide imgUrl={process.env.PUBLIC_URL + "/images/registration.png"}></LeftSide>
@@ -74,7 +79,7 @@ const Registration = () => {
                     <label htmlFor="password">Password:</label>
                     <Input type="password" name="password" placeholder="password.." value={inputs.password} onChange={handleInputChange} />
                     <label htmlFor="confirmPassword">Confirm password:</label>
-                    <Input type="password" name="confirmPassowrd" placeholder="confirm password.." value={inputs.confirmPassword} onChange={handleInputChange} />
+                    <Input type="password" name="confirmPassword" placeholder="confirm password.." value={inputs.confirmPassword} onChange={handleInputChange} />
                     <ColorContainer>
                         <label htmlFor="bubbleColor">Bubble Color:</label>
                         <input type="color" name="bubbleColor" value={inputs.bubbleColor} onChange={handleInputChange} />
