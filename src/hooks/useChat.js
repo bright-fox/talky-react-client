@@ -20,8 +20,8 @@ export default roomID => {
         return () => socketRef.current.disconnect()
     }, [roomID])
 
-    const sendMessage = (msg) => {
-        socketRef.current.emit("chatMessage", msg)
+    const sendMessage = (message, accessToken) => {
+        socketRef.current.emit("chatMessage", { message, accessToken })
     }
 
     return { messages, newMessage, setNewMessage, sendMessage }
