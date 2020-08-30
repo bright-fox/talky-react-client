@@ -56,8 +56,15 @@ const Chatroom = () => {
 
     const submitHandler = e => {
         e.preventDefault()
-        sendMessage(newMessage)
+        sendMessage(newMessage, localStorage.getItem("accessToken")) // use accesstoken from localstorage
         setNewMessage("")
+    }
+
+    const renderMessages = (messages) => {
+        const currUserID = JSON.parse(localStorage.getItem("currUser")).id
+        return messages.map((msg, i) => {
+            return <Message key={i} message={msg.text} time={msg.time} author={msg.user.username} isAuthor={msg.user.id === currUserID} bubbleColor={msg.user.bubbleColor} textColor={msg.user.textColor}></Message>
+        })
     }
 
     return (
@@ -68,9 +75,7 @@ const Chatroom = () => {
                     <Button>Leave</Button>
                 </Topbar>
                 <MessageHistory>
-                    {messages.map((msg, i) => {
-                        return <Message key={i} message={msg} time={new Date().toISOString()} author="user1"></Message>
-                    })}
+                    {renderMessages(messages)}
                 </MessageHistory>
                 <MessageForm onSubmit={submitHandler}>
                     <input placeholder="Send a message.." type="text" value={newMessage} onChange={e => setNewMessage(e.target.value)} />
