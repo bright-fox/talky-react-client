@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import useChat from "../hooks/useChat"
 import styled from "styled-components"
@@ -53,10 +53,15 @@ const Topbar = styled.div`
 const Chatroom = () => {
     const { id } = useParams()
     const { messages, newMessage, setNewMessage, sendMessage } = useChat(id)
+    const messageHistory = useRef(null)
+
+    useEffect(() => {
+        messageHistory.current.scrollTop = messageHistory.current.scrollHeight
+    }, [messages])
 
     const submitHandler = e => {
         e.preventDefault()
-        sendMessage(newMessage, localStorage.getItem("accessToken")) // use accesstoken from localstorage
+        sendMessage(newMessage, localStorage.getItem("accessToken"))
         setNewMessage("")
     }
 
@@ -74,7 +79,7 @@ const Chatroom = () => {
                     <h2 style={{ margin: "10px" }}>{id}</h2>
                     <Button>Leave</Button>
                 </Topbar>
-                <MessageHistory>
+                <MessageHistory ref={messageHistory}>
                     {renderMessages(messages)}
                 </MessageHistory>
                 <MessageForm onSubmit={submitHandler}>
