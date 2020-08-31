@@ -61,6 +61,7 @@ const Chatroom = () => {
 
     const submitHandler = e => {
         e.preventDefault()
+        if (newMessage.length === 0) return
         sendMessage(newMessage, localStorage.getItem("accessToken"))
         setNewMessage("")
     }
