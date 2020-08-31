@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import useChat from "../hooks/useChat"
 import styled from "styled-components"
 import Message from "../components/Message"
@@ -52,6 +52,7 @@ const Topbar = styled.div`
 
 const Chatroom = () => {
     const { id } = useParams()
+    const history = useHistory()
     const { messages, newMessage, setNewMessage, sendMessage } = useChat(id)
     const messageHistory = useRef(null)
 
@@ -78,7 +79,7 @@ const Chatroom = () => {
             <Div>
                 <Topbar>
                     <h2 style={{ margin: "10px" }}>{id}</h2>
-                    <Button>Leave</Button>
+                    <Button onClick={() => history.push("/rooms")}>Leave</Button>
                 </Topbar>
                 <MessageHistory ref={messageHistory}>
                     {renderMessages(messages)}
