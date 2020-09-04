@@ -4,6 +4,7 @@ import useChat from "../hooks/useChat"
 import styled from "styled-components"
 import Message from "../components/Message"
 import Button from "../components/Button"
+import Memberlist from "../components/Memberlist"
 
 const Container = styled.div`
     display: flex;
@@ -53,7 +54,7 @@ const Topbar = styled.div`
 const Chatroom = () => {
     const { id } = useParams()
     const history = useHistory()
-    const { messages, newMessage, setNewMessage, sendMessage } = useChat(id)
+    const { messages, newMessage, setNewMessage, sendMessage, members } = useChat(id, localStorage.getItem("accessToken"))
     const messageHistory = useRef(null)
 
     useEffect(() => {
@@ -87,6 +88,7 @@ const Chatroom = () => {
                 <MessageForm onSubmit={submitHandler}>
                     <input placeholder="Send a message.." type="text" value={newMessage} onChange={e => setNewMessage(e.target.value)} />
                 </MessageForm>
+                <Memberlist members={members} />
             </Div>
         </Container>
     )
