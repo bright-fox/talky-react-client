@@ -45,7 +45,7 @@ const Memberlist = ({ members }) => {
             <Meta>Online ({members.length})</Meta>
             <div>
                 {members.map(member => {
-                    return <div key={member.username}>{member}</div>
+                    return <div key={member}>{member}</div>
                 })}
             </div>
         </Container>
