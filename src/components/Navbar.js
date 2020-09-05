@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Button from "./Button"
 
@@ -55,12 +55,13 @@ const Container = styled.div`
 `
 
 const Navbar = () => {
+    const history = useHistory()
     return (
         <Container>
             <Navbrand to="/">talky_</Navbrand>
             <div>
                 <Navlink to="/rooms">Chatrooms</Navlink>
-                <Button>Login</Button>
+                <Button onClick={() => history.push("/login")}>Login</Button>
             </div>
         </Container>
     )

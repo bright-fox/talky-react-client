@@ -8,6 +8,7 @@ import { request } from "../api"
 import { cacheUser } from "../util/cache"
 import usercontext from "../contexts/usercontext"
 import { SIGNUP } from "../actions"
+import Form from "../components/Form"
 
 const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
@@ -33,14 +34,6 @@ const RightSide = styled.div`
     margin-top: 5vh;
 `
 
-const Form = styled.form`
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    font-family: 'Montserrat', sans-serif;
-`
-
 const ColorContainer = styled.div`
     display: flex;
     align-items: center;
@@ -59,7 +52,7 @@ const Registration = () => {
     const { inputs, handleInputChange, handleSubmit } = useForm(initialValues, callback)
 
     async function callback(inputs) {
-        const res = await request({ method: "POST", path: "/signup", body: { ...inputs } })
+        const res = await request({ method: "POST", path: "/signup", body: inputs })
         if (res.status !== 200) return // handle error
         const { user, accessToken } = await res.json()
 

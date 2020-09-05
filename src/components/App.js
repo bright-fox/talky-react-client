@@ -8,6 +8,7 @@ import Registration from "../pages/Registration"
 import Globalstyle from "../styles/Globalstyle"
 import userReducer from "../reducers/userReducer"
 import usercontext from "../contexts/usercontext"
+import Login from "../pages/Login"
 
 function App() {
   // user context
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/signup" exact>
             <Registration />
+          </Route>
+          <Route path="/login" exact>
+            <Login />
           </Route>
         </Switch>
       </Router>
