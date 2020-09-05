@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Input from "../components/Input"
@@ -6,6 +6,8 @@ import Button from "../components/Button"
 import useForm from "../hooks/useForm"
 import { request } from "../api"
 import { cacheUser } from "../util/cache"
+import usercontext from "../contexts/usercontext"
+import { SIGNUP } from "../actions"
 
 const Container = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
@@ -51,6 +53,7 @@ const ColorContainer = styled.div`
 `
 
 const Registration = () => {
+    const { dispatch } = useContext(usercontext)
     const history = useHistory()
     const initialValues = { username: "", email: "", confirmEmail: "", password: "", confirmPassword: "", bubbleColor: "#ff4f5b", textColor: "#000000" }
     const { inputs, handleInputChange, handleSubmit } = useForm(initialValues, callback)
@@ -61,6 +64,7 @@ const Registration = () => {
         const { user, accessToken } = await res.json()
 
         cacheUser(user, accessToken)
+        dispatch({ type: SIGNUP, payload: { currUser: user } })
         history.push("/")
     }
 
