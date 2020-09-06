@@ -1,7 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link, useHistory } from "react-router-dom"
 import styled from "styled-components"
 import Button from "./Button"
+import Dropdown from "./Dropdown"
+import usercontext from "../contexts/usercontext"
 
 const Navlink = styled(Link)`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -54,15 +56,35 @@ const Container = styled.div`
     height: 10vh;
 `
 
+const RightSide = styled.div`
+    display: flex;
+    align-items: center;
+`
+
 const Navbar = () => {
     const history = useHistory()
+    const { state } = useContext(usercontext)
+
+    const renderAuth = () => {
+        if (!state.isLoggedIn) {
+            return <Button onClick={() => history.push("/login")}>Login</Button>
+        }
+
+        return (
+            <Dropdown heading={`Hey, Bert`}>
+                <div>User Profile</div>
+                <div>Logout</div>
+            </Dropdown>
+        )
+    }
+
     return (
         <Container>
             <Navbrand to="/">talky_</Navbrand>
-            <div>
+            <RightSide>
                 <Navlink to="/rooms">Chatrooms</Navlink>
-                <Button onClick={() => history.push("/login")}>Login</Button>
-            </div>
+                {renderAuth()}
+            </RightSide>
         </Container>
     )
 }
