@@ -1,5 +1,5 @@
-import React, { useMemo, useReducer } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React, { useMemo, useReducer, useEffect } from "react"
+import { BrowserRouter as Router, Switch } from "react-router-dom"
 import Navbar from "./Navbar"
 import Home from "../pages/Home"
 import Chatrooms from "../pages/Chatrooms"
@@ -11,11 +11,12 @@ import usercontext from "../contexts/usercontext"
 import Login from "../pages/Login"
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from './PublicRoute';
+import { LOGIN, LOGOUT } from "../actions"
 
 function App() {
   // user context
   const initialValues = {
-    isLoggedIn: localStorage.getItem("isLoggedIn") || false,
+    isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
     currUser: JSON.parse(localStorage.getItem("currUser")) || null
   }
 
@@ -26,6 +27,20 @@ function App() {
     return { state, dispatch }
   }, [state, dispatch])
 
+  useEffect(() => {
+    // login or logout on all open tabs
+    window.addEventListener("storage", e => {
+      if (e.key === "isLoggedIn") {
+        console.log("LOGGING IN OR OUT")
+        if (JSON.parse(e.newValue)) {
+          dispatch({ type: LOGIN, payload: { currUser: JSON.parse(localStorage.getItem("currUser")) } })
+        } else {
+          dispatch({ type: LOGOUT })
+        }
+      }
+    })
+  }, [])
+
   return (
     <usercontext.Provider value={userContextValue}>
       <Router>
@@ -33,10 +48,10 @@ function App() {
         <Navbar />
         <Switch>
           <PrivateRoute path="/rooms/:id" exact component={Chatroom} isLoggedIn={state.isLoggedIn} />
-          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={false} path={["/", "/home"]} exact component={Home} />
-          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={false} path="/rooms" exact component={Chatrooms} />
-          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={true} path="/signup" exact component={Registration} />
-          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={true} path="/login" exact component={Login} />
+          <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={false} path={["/", "/home"]} exact component={Home} />
+          <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={false} path="/rooms" exact component={Chatrooms} />
+          <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={true} path="/signup" exact component={Registration} />
+          <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={true} path="/login" exact component={Login} />
         </Switch>
       </Router>
     </usercontext.Provider>

@@ -4,6 +4,8 @@ import styled from "styled-components"
 import Button from "./Button"
 import Dropdown from "./Dropdown"
 import usercontext from "../contexts/usercontext"
+import { removeUser } from "../util/cache"
+import { LOGOUT } from "../actions"
 
 const Navlink = styled(Link)`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -63,7 +65,12 @@ const RightSide = styled.div`
 
 const Navbar = () => {
     const history = useHistory()
-    const { state } = useContext(usercontext)
+    const { state, dispatch } = useContext(usercontext)
+
+    const handleLogout = () => {
+        removeUser()
+        dispatch({ type: LOGOUT })
+    }
 
     const renderAuth = () => {
         if (!state.isLoggedIn) {
@@ -73,7 +80,7 @@ const Navbar = () => {
         return (
             <Dropdown heading={`Hey, Bert`}>
                 <div>User Profile</div>
-                <div>Logout</div>
+                <div onClick={handleLogout}>Logout</div>
             </Dropdown>
         )
     }
