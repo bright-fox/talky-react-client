@@ -9,6 +9,8 @@ import Globalstyle from "../styles/Globalstyle"
 import userReducer from "../reducers/userReducer"
 import usercontext from "../contexts/usercontext"
 import Login from "../pages/Login"
+import PrivateRoute from "./PrivateRoute"
+import PublicRoute from './PublicRoute';
 
 function App() {
   // user context
@@ -30,21 +32,11 @@ function App() {
         <Globalstyle />
         <Navbar />
         <Switch>
-          <Route path={["/", "/home"]} exact>
-            <Home />
-          </Route>
-          <Route path="/rooms" exact>
-            <Chatrooms />
-          </Route>
-          <Route path="/rooms/:id" exact>
-            <Chatroom />
-          </Route>
-          <Route path="/signup" exact>
-            <Registration />
-          </Route>
-          <Route path="/login" exact>
-            <Login />
-          </Route>
+          <PrivateRoute path="/rooms/:id" exact component={Chatroom} isLoggedIn={state.isLoggedIn} />
+          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={false} path={["/", "/home"]} exact component={Home} />
+          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={false} path="/rooms" exact component={Chatrooms} />
+          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={true} path="/signup" exact component={Registration} />
+          <PublicRoute isLoggedIn={state.isLoggedIn} restricted={true} path="/login" exact component={Login} />
         </Switch>
       </Router>
     </usercontext.Provider>
