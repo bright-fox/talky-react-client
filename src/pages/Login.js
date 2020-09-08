@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import Form from "../components/Form"
 import Input from "../components/Input"
 import Button from "../components/Button"
@@ -12,7 +12,7 @@ import { LOGIN } from "../actions"
 
 const Container = styled.div`
     display: flex;
-    background-color: #eee;
+    background-color: #ff4f5a;
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -27,6 +27,18 @@ const Div = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+`
+
+const Meta = styled(Link)`
+    font-size: 0.7rem;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+        text-decoration: underline;
+    }
 `
 
 const Login = () => {
@@ -56,6 +68,7 @@ const Login = () => {
                     <Input type="text" name="username" placeholder="username.." value={inputs.username} onChange={handleInputChange} />
                     <label htmlFor="password">Password:</label>
                     <Input type="password" name="password" placeholder="password.." value={inputs.password} onChange={handleInputChange} />
+                    <Meta to="/signup">If you don't have an account yet, click here to sign up</Meta>
                     <div>
                         <Button type="submit">Login</Button>
                     </div>
