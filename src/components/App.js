@@ -12,6 +12,7 @@ import Login from "../pages/Login"
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from './PublicRoute';
 import { LOGIN, LOGOUT } from "../actions"
+import ToBeImplemented from "../pages/ToBeImplemented"
 
 function App() {
   // user context
@@ -48,10 +49,12 @@ function App() {
         <Navbar />
         <Switch>
           <PrivateRoute path="/rooms/:id" exact component={Chatroom} isLoggedIn={state.isLoggedIn} />
+          <PrivateRoute path="/users/:userid/profile" exact component={ToBeImplemented} isLoggedIn={state.isLoggedIn} />
           <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={false} path={["/", "/home"]} exact component={Home} />
           <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={false} path="/rooms" exact component={Chatrooms} />
           <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={true} path="/signup" exact component={Registration} />
           <PublicRoute isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))} restricted={true} path="/login" exact component={Login} />
+
         </Switch>
       </Router>
     </usercontext.Provider>

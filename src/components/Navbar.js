@@ -90,7 +90,7 @@ const Navbar = () => {
 
         return (
             <Dropdown heading={`hej, ${state.currUser.username}!`}>
-                <div>User Profile</div>
+                <div onClick={() => history.push(`/users/${state.currUser.id}/profile`)}>User Profile</div>
                 <div onClick={handleLogout}>Logout</div>
             </Dropdown>
         )
