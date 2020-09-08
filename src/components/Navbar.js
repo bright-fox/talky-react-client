@@ -63,6 +63,12 @@ const RightSide = styled.div`
     align-items: center;
 `
 
+const AuthButtons = styled.div`
+    & > * {
+        margin: 0 5px;
+    }
+`
+
 const Navbar = () => {
     const history = useHistory()
     const { state, dispatch } = useContext(usercontext)
@@ -74,7 +80,12 @@ const Navbar = () => {
 
     const renderAuth = () => {
         if (!state.isLoggedIn) {
-            return <Button onClick={() => history.push("/login")}>Login</Button>
+            return (
+                <AuthButtons>
+                    <Button onClick={() => history.push("/login")}>Login</Button>
+                    <Button onClick={() => history.push("/signup")}>Sign Up</Button>
+                </AuthButtons>
+            )
         }
 
         return (
