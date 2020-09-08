@@ -89,7 +89,7 @@ const Navbar = () => {
         }
 
         return (
-            <Dropdown heading={`Hey, Bert`}>
+            <Dropdown heading={`hej, ${state.currUser.username}!`}>
                 <div>User Profile</div>
                 <div onClick={handleLogout}>Logout</div>
             </Dropdown>
