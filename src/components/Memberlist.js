@@ -4,11 +4,11 @@ import styled from "styled-components"
 const Container = styled.div`
     background-color: #fff;
     overflow-y: scroll;
-    height: 90vh;
-    width: 20vw;
+    height: calc(100vh - 70px);
+    width: 15vw;
     position: absolute;
     right: 0;
-    top: 10vh;
+    top: 70px;
 `
 
 const Meta = styled.div`
@@ -39,13 +39,21 @@ const Meta = styled.div`
     }
 `
 
+const UsernameDisplay = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+    font-weight: bold;
+    margin-left: 15px;
+    overflow: hidden;
+    font-family: 'Rubik', sans-serif;
+`
+
 const Memberlist = ({ members }) => {
     return (
         <Container>
             <Meta>Online ({members.length})</Meta>
             <div>
                 {members.map(member => {
-                    return <div key={member}>{member}</div>
+                    return <UsernameDisplay key={member}>{member}</UsernameDisplay>
                 })}
             </div>
         </Container>

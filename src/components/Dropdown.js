@@ -24,6 +24,7 @@ const Options = styled.div`
     display: ${props => props.dropped ? "block" : "none"};
     border: 1px solid #ff4f5a;
     border-top: none;
+    background-color: #fff;
 
     & > * {
         display: block;

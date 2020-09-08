@@ -1,35 +1,28 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-
-const Container = styled.div`
-    @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
-    font-family: 'Russo One', sans-serif;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
+import PageContainer from "../components/PageContainer"
 
 const Div = styled.div`
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    height: 90vh;
-    width: 100vw;
+`
+
+const H2 = styled.h2`
+    margin-top: 30px;
 `
 
 const IconContainer = styled.div`
-    width: 20vw;
-    height: 20vw;
+    width: 150px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 2px solid black;
-    margin: 20px 50px;
+    margin: 20px;
     border-radius: 100%;
+    background-color: #fff;
 `
 
 const IconLink = styled(Link)`
@@ -61,15 +54,17 @@ const IconLink = styled(Link)`
     }
 `
 
+
+
 const Chatrooms = () => {
     return (
-        <Container>
-            <h2>Choose your preferred chatroom to meet new people</h2>
+        <PageContainer fontImport="@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');" fontFamily="'Russo One', sans-serif" fd="column" bc="#ff4f5a" jc="start" matchNavbar>
+            <H2>Choose your preferred chatroom to meet new people</H2>
             <Div>
                 <IconContainer>
                     <img src={process.env.PUBLIC_URL + "/icons/chat.png"} alt="chat messages" />
-                    <IconLink to="/rooms/general"><h3>General</h3></IconLink>
-                </IconContainer>
+                    < IconLink to="/rooms/general" > <h3>General</h3></IconLink >
+                </IconContainer >
                 <IconContainer>
                     <img src={process.env.PUBLIC_URL + "/icons/bike.png"} alt="bycicle" />
                     <IconLink to="/rooms/sports"><h3>Sports</h3></IconLink>
@@ -90,8 +85,8 @@ const Chatrooms = () => {
                     <img src={process.env.PUBLIC_URL + "/icons/video.png"} alt="video" />
                     <IconLink to="/rooms/movies"><h3>Movies</h3></IconLink>
                 </IconContainer>
-            </Div>
-        </Container>
+            </Div >
+        </PageContainer >
     )
 }
 

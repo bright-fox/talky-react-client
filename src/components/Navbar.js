@@ -7,6 +7,14 @@ import usercontext from "../contexts/usercontext"
 import { removeUser } from "../util/cache"
 import { LOGOUT } from "../actions"
 
+const Container = styled.div`
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+`
+
 const Navlink = styled(Link)`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
@@ -48,14 +56,6 @@ const Navbrand = styled(Link)`
     font-size: 1.8rem;
     text-decoration: none;
     margin: 10px;
-`
-
-const Container = styled.div`
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 10vh;
 `
 
 const RightSide = styled.div`

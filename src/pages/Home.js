@@ -1,8 +1,8 @@
 import React from "react"
-import CenterContainer from "../components/CenterContainer"
 import styled from "styled-components"
 import Button from "../components/Button"
 import { useHistory } from "react-router-dom"
+import PageContainer from "../components/PageContainer"
 
 const Div = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -47,7 +47,7 @@ const Home = () => {
 
     return (
         <>
-            <CenterContainer height="90vh">
+            <PageContainer matchNavbar>
                 <Div>
                     <div className="header">
                         <h2>Meet and socialize.</h2>
@@ -56,8 +56,8 @@ const Home = () => {
                     </div>
                     <img src={process.env.PUBLIC_URL + "/images/communication.jpg"} alt="communication" />
                 </Div>
-            </CenterContainer>
-            <CenterContainer backgroundColor="#EEE">
+            </PageContainer>
+            <PageContainer bc="#EEE" fullScreen>
                 <Card>
                     <img src={process.env.PUBLIC_URL + "/icons/care.png"} alt="hands around heart" />
                     <h2>From us for you</h2>
@@ -73,7 +73,7 @@ const Home = () => {
                     <h2>Different interests</h2>
                     <div>Each chatroom has a theme that gives a hint about the discussed topics.</div>
                 </Card>
-            </CenterContainer>
+            </PageContainer>
         </>
     )
 }

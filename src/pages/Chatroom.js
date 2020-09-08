@@ -5,35 +5,28 @@ import styled from "styled-components"
 import Message from "../components/Message"
 import Button from "../components/Button"
 import Memberlist from "../components/Memberlist"
-
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 90vh;
-    width: 100vw;
-    border-top: 1px solid #eee;
-    background-color: #eee;
-`
+import PageContainer from '../components/PageContainer';
 
 const Div = styled.div`
     width: 40vw;
     background-color: #fff;
-    display: grid;
     padding: 10px;
+    height: calc(100vh - 70px);
 `
 
 const MessageHistory = styled.div`
-    height: 70vh;
     overflow-y: scroll;
     border-top: 1px solid #eee;
     display: flex;
     flex-direction: column;
+    height: calc(100% - 130px);
 `
 
 const MessageForm = styled.form`
     display: flex;
-    width: 100%;
+    height: 40px;
     justify-content: center;
+    margin: 10px 0;
 
     & input {
         width: 100%;
@@ -46,7 +39,8 @@ const MessageForm = styled.form`
 
 const Topbar = styled.div`
     display: flex;
-    padding: 0 10px;
+    padding: 10px;
+    height: 70px;
     justify-content: space-between;
     align-items: center;
 `
@@ -76,7 +70,7 @@ const Chatroom = () => {
     }
 
     return (
-        <Container>
+        <PageContainer bt="1px solid #eee" bc="#eee" matchNavbar>
             <Div>
                 <Topbar>
                     <h2 style={{ margin: "10px" }}>{id}</h2>
@@ -88,9 +82,9 @@ const Chatroom = () => {
                 <MessageForm onSubmit={submitHandler}>
                     <input placeholder="Send a message.." type="text" value={newMessage} onChange={e => setNewMessage(e.target.value)} />
                 </MessageForm>
-                <Memberlist members={members} />
             </Div>
-        </Container>
+            <Memberlist members={members} />
+        </PageContainer>
     )
 }
 

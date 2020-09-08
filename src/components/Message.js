@@ -6,11 +6,10 @@ const MessageContainer = styled.div`
     background-color: ${props => props.bubbleColor || "#eee"};
     color: ${props => props.textColor || "#000"}
     border-radius: 5px;
-    padding: 10px;
+    padding: 15px;
     ${props => props.isAuthor ? css`margin: 5px 20px 5px auto;` : css`margin: 5px 20px;`}
     position: relative;
     width: 60%;
-    font-size: 0.8rem;
     ${props => props.isAuthor ? css`border-top-right-radius: 0;` : css`border-top-left-radius: 0;`}
 
     &:before {
@@ -52,6 +51,7 @@ const Content = styled.p`
     width: 100%;
     word-break: break-all;
     margin-bottom: 0;
+    margin-top: 5px;
 `
 
 export default ({ author, message, time, isAuthor, textColor, bubbleColor }) => {
