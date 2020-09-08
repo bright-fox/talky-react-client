@@ -21,16 +21,21 @@ const Div = styled.div`
 `
 
 const IconContainer = styled.div`
-    width: 33vw;
+    width: 20vw;
+    height: 20vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 2px solid black;
+    margin: 20px 50px;
+    border-radius: 100%;
 `
 
 const IconLink = styled(Link)`
     text-decoration: none;
     color: black;
+    margin-top: 10px;
     position: relative;
 
     & h3 {
