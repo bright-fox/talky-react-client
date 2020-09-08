@@ -23,6 +23,7 @@ const Div = styled.div`
         font-size: 0.9rem;
         overflow: break-word;
         max-width: 480px;
+        margin-bottom: 15px;
     }
 `
 
