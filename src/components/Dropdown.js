@@ -54,7 +54,7 @@ const Dropdown = ({ heading, children }) => {
         return () => {
             window.removeEventListener("click", closeDropdown)
         }
-    })
+    }, [dropped])
 
     return (
         <Container>
